@@ -1,6 +1,6 @@
 {
   "name": "Observatorio Antimonopolio y Justicia Colectiva Digital",
   "description": "Plataforma de investigación legal, auditoría de cláusulas abusivas en contratos de adhesión, seguimiento de monopolios tecnológicos y registro de acción colectiva para la defensa de los derechos fundamentales del consumidor digital.",
-  "requestFramePermissions": [],
+  "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

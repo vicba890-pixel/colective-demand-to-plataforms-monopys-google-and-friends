@@ -24,11 +24,13 @@ import {
   MonopolyEntity,
   TestimonySubmission
 } from './data/legalArchiveData';
+import ContractCameraScanner from './components/ContractCameraScanner';
 
 export default function App() {
   // Auditor state
   const [selectedPresetId, setSelectedPresetId] = useState<string>(ABUSIVE_CLAUSE_PATTERNS[0].id);
   const [contractInput, setContractInput] = useState<string>(ABUSIVE_CLAUSE_PATTERNS[0].contractExcerpt);
+  const [scannedPattern, setScannedPattern] = useState<AbusiveClausePattern | null>(null);
   const [clauseCategoryFilter, setClauseCategoryFilter] = useState<string>('Todas');
   const [copiedSummary, setCopiedSummary] = useState<boolean>(false);
 
@@ -52,6 +54,10 @@ export default function App() {
     const normalizedText = contractInput.toLowerCase();
     const matchedPatterns: AbusiveClausePattern[] = [];
 
+    if (scannedPattern && contractInput.trim() === scannedPattern.contractExcerpt.trim()) {
+      matchedPatterns.push(scannedPattern);
+    }
+
     for (const pattern of ABUSIVE_CLAUSE_PATTERNS) {
       const hasKeywordMatch = pattern.keywords.some((kw) => normalizedText.includes(kw.toLowerCase()));
       const isDirectPreset = pattern.contractExcerpt.toLowerCase() === normalizedText.trim();
@@ -61,10 +67,10 @@ export default function App() {
     }
 
     if (matchedPatterns.length === 0 && contractInput.trim().length > 0) {
-      return [ABUSIVE_CLAUSE_PATTERNS[0]];
+      return scannedPattern ? [scannedPattern] : [ABUSIVE_CLAUSE_PATTERNS[0]];
     }
     return matchedPatterns;
-  }, [contractInput]);
+  }, [contractInput, scannedPattern]);
 
   const filteredClauseCatalog = useMemo(() => {
     if (clauseCategoryFilter === 'Todas') return ABUSIVE_CLAUSE_PATTERNS;
@@ -434,8 +440,18 @@ III. PETITORIO DE APLICACIÓN DE LAS LEYES VIGENTES Y PRISIÓN EFECTIVA
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Column: Preset Selector & Textarea Input */}
+            {/* Left Column: Camera Scanner, Preset Selector & Textarea Input */}
             <div className="lg:col-span-5 space-y-6">
+              <ContractCameraScanner
+                onScanComplete={(extractedText, aiPattern) => {
+                  setContractInput(extractedText);
+                  if (aiPattern) {
+                    setScannedPattern(aiPattern);
+                    setSelectedPresetId(aiPattern.id);
+                  }
+                }}
+              />
+
               <div className="p-6 bg-[#F4F0EA] border border-stone-300 rounded">
                 <label
                   htmlFor="contract-clause-input"
