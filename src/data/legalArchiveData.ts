@@ -14,9 +14,11 @@ export interface MonopolyEntity {
   id: string;
   rank: string;
   corporation: string;
+  shortName: string;
   primarySector: string;
   marketSharePct: number;
   annualLobbyingUsdM: number;
+  annualRevenueUsdB: number;
   sovereigntyComparison: string;
   activeFederalDockets: string[];
   statutoryViolations: string[];
@@ -170,9 +172,11 @@ export const MONOPOLY_ENTITIES: MonopolyEntity[] = [
     id: 'mono-alphabet',
     rank: '01',
     corporation: 'Alphabet / Google LLC',
+    shortName: 'Alphabet / Google',
     primarySector: 'Búsqueda Web, Publicidad Digital, Sistema Operativo Móvil e IA',
     marketSharePct: 91.4,
     annualLobbyingUsdM: 74.8,
+    annualRevenueUsdB: 350.0,
     sovereigntyComparison: 'Capitalización bursátil superior al PIB nominal combinado de 145 Estados soberanos.',
     activeFederalDockets: [
       'U.S. v. Google LLC (1:20-cv-03010 - Monopolio en Búsqueda)',
@@ -193,9 +197,11 @@ export const MONOPOLY_ENTITIES: MonopolyEntity[] = [
     id: 'mono-meta',
     rank: '02',
     corporation: 'Meta Platforms Inc.',
+    shortName: 'Meta Platforms',
     primarySector: 'Redes Sociales, Mensajería Instantánea y Vigilancia Publicitaria',
     marketSharePct: 78.2,
     annualLobbyingUsdM: 68.4,
+    annualRevenueUsdB: 164.5,
     sovereigntyComparison: 'Control directo del flujo informativo diario de 3.980 millones de ciudadanos globales.',
     activeFederalDockets: [
       'FTC v. Meta Platforms, Inc. (1:20-cv-03590 - Adquisiciones depredadoras)',
@@ -214,9 +220,11 @@ export const MONOPOLY_ENTITIES: MonopolyEntity[] = [
     id: 'mono-apple',
     rank: '03',
     corporation: 'Apple Inc.',
+    shortName: 'Apple Inc.',
     primarySector: 'Ecosistema Móvil Cerrado, Distribución de Software y Pasarelas de Pago',
     marketSharePct: 61.8,
     annualLobbyingUsdM: 59.2,
+    annualRevenueUsdB: 391.0,
     sovereigntyComparison: 'Liquidez y valoración equivalentes a las mayores economías del G7.',
     activeFederalDockets: [
       'U.S. & Plaintiff States v. Apple Inc. (2:24-cv-04055 - Monopolio de Ecosistema Smartphone)'
@@ -234,9 +242,11 @@ export const MONOPOLY_ENTITIES: MonopolyEntity[] = [
     id: 'mono-amazon',
     rank: '04',
     corporation: 'Amazon.com Inc.',
+    shortName: 'Amazon.com',
     primarySector: 'Comercio Electrónico Dominante, Logística y Nube (AWS)',
     marketSharePct: 82.5,
     annualLobbyingUsdM: 81.6,
+    annualRevenueUsdB: 638.0,
     sovereigntyComparison: 'Control de infraestructura crítica gubernamental y comercial superior a bancos centrales regionales.',
     activeFederalDockets: [
       'FTC & 17 States v. Amazon.com, Inc. (2:23-cv-01495 - Prácticas punitivas y algoritmos de precios)',
@@ -255,9 +265,11 @@ export const MONOPOLY_ENTITIES: MonopolyEntity[] = [
     id: 'mono-microsoft',
     rank: '05',
     corporation: 'Microsoft Corporation',
+    shortName: 'Microsoft Corp.',
     primarySector: 'Software Corporativo, Infraestructura Cloud y Consolidación de IA',
     marketSharePct: 86.1,
     annualLobbyingUsdM: 71.1,
+    annualRevenueUsdB: 245.1,
     sovereigntyComparison: 'Dependencia estructural de sistemas estatales, defensa y sector financiero global.',
     activeFederalDockets: [
       'Investigación Federal FTC/DOJ por Contratos de Empaquetamiento Forzoso (Bundling) y Adquisiciones Encubiertas de IA'

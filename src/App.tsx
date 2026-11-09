@@ -25,6 +25,7 @@ import {
   TestimonySubmission
 } from './data/legalArchiveData';
 import ContractCameraScanner from './components/ContractCameraScanner';
+import LobbyingVsRevenueChart from './components/LobbyingVsRevenueChart';
 
 export default function App() {
   // Auditor state
@@ -643,6 +644,12 @@ III. PETITORIO DE APLICACIÓN DE LAS LEYES VIGENTES Y PRISIÓN EFECTIVA
               </div>
             </div>
           </div>
+
+          <LobbyingVsRevenueChart
+            entities={sortedMonopolies}
+            selectedEntityId={activeMonopoly.id}
+            onSelectEntity={(id) => setSelectedMonopolyId(id)}
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Table of the 5 Corporations */}
